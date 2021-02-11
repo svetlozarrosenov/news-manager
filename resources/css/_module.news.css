@@ -1,0 +1,18 @@
+/* ------------------------------------------------------------ *\
+	 news
+\* ------------------------------------------------------------ */
+
+.news-container { display: flex; flex-wrap: wrap; justify-content: space-between; }
+
+.news-item { position: relative; width: 30%; margin-bottom: 30px; }
+
+.news-item .news-item__title, .news-item .news-item__image, .news-item .news-item__content, .news-item .news-item__date { text-align: center; }
+
+.news-item .news-item__image { width: 100%; height: 200px; background-position: center; background-repeat: no-repeat; }
+
+.news-item .news-item__featured { position: absolute; top: 0; left: 0; width: 100px; }
+
+$breakpoint-tablet-portrait { 
+	.news { flex-direction: column; } 
+	.news-item { width: 100%; }
+}

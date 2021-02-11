@@ -1,0 +1,17 @@
+$responsive-xxs				: 374px;
+$responsive-xs				: 767px;
+$responsive-xs-min 			: 768px;
+$responsive-admin-bar 		: 782px;
+$responsive-ios				: 812px;
+$responsive-sm				: 1023px;
+$responsive-md				: 1200px;
+$responsive-lg 				: 1400px;
+
+$breakpoint-mobile-portrait : @media (max-width: $responsive-xxs);
+$breakpoint-mobile			: @media (max-width: $responsive-xs), screen and (max-width: $responsive-ios) and (orientation: landscape);
+$breakpoint-admin-bar 		: @media (max-width: $responsive-admin-bar);
+$breakpoint-tablet-portrait	: @media (max-width: $responsive-sm);
+$breakpoint-small-desktop	: @media (max-width: $responsive-md);
+$breakpoint-large-desktop 	: @media (max-width: $responsive-lg);
+$desktop-hovers 			: @media (-ms-high-contrast: none), (-ms-high-contrast: active), (-moz-touch-enabled: 0), (hover);
+$retina						: @media (min-resolution: 2dppx);
