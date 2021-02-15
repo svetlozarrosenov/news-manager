@@ -5,34 +5,34 @@ use Carbon_Fields\Container\Container;
 use Carbon_Fields\Field\Field;
 
 class Admin {
-
     public function __construct() {
-        add_action( 'after_setup_theme', function(){
-            \Carbon_Fields\Carbon_Fields::boot();           
-            
-            $this->createPostTypes();        
-            $this->addOptionsPage();
+        add_action( 'after_setup_theme', function(){            
+            $this->create_post_types();        
+            $this->add_options_page();
+            $this->remove_theme_help();
         } );
     }
 
     /**
-     * Create admin page
+     * Create admin options page
      */
-    public function addOptionsPage() {
+    public function add_options_page() {
         Container::make( 'theme_options', __( 'News Manager', 'crb' ) )
-        ->set_page_file( 'crb-zephr-options.php' )
+        ->set_page_file( 'crb-news-options.php' )
         ->add_fields( array(
             Field::make( 'html', 'crb_news_manager_shortcode', __( 'Shortcode', 'crb' ) )
                 ->set_html( '<p>You can use the <strong>[news]
                     </strong>shortcode for listing your available news.</p>
                     <p>You can use <strong>posts_per_page</strong> attribute and <strong>sort</strong> attribute.</p>
                     <p>The <strong>sort</strong> attribute except only <strong>asc</strong> and <strong>desc</strong> values.</p> 
-                    <p>Example: <strong>[news posts_per_page=1 sort="desc"]</strong></p>' )
+                    <p>Example: <strong>[news posts_per_page=3 sort="desc"]</strong></p>' )
         ) );
     }
 
-    public function createPostTypes() {
-
+    /**
+     * Create news post type
+     */
+    public function create_post_types() {
         register_post_type( 'crb_news', array(
             'labels' => array(
                 'name' => __( 'News', 'crb' ),
@@ -61,7 +61,13 @@ class Admin {
             'menu_icon' => 'dashicons-admin-site-alt3',
             'supports' => array( 'title', 'editor', 'page-attributes', 'thumbnail' ),
         ) );
+    }
 
-        return $this;
+    /**
+     * CarbonFields library automatically create theme help page.
+     * We don't need it currently so this function remove the action.
+     */
+    public function remove_theme_help() {
+        remove_action( 'admin_menu', 'crb_add_theme_readme', 11 );
     }
 }

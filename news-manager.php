@@ -2,7 +2,7 @@
 /**
  * Plugin Name: News Manager
  * Description: Managing News
- * Version: 1.0.0
+ * Version: 1.1.0
  * Author: ssimeonov
  *
  * @package News Manager
@@ -16,8 +16,7 @@ use News_Manager_Package\Admin;
 use News_Manager_Package\News;
 use News_Manager_Package\Loader;
 
-define( 'NEWS_MANAGER_VERSION', '1.0.0' );
-
+define( 'NEWS_MANAGER_VERSION', '1.1.0' );
 define( 'NEWS_MANAGER_URL', plugin_dir_url( __FILE__ ) );
 define( 'NEWS_MANAGER_PATH', plugin_dir_path( __FILE__ ) );
 

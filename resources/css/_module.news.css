@@ -8,7 +8,7 @@
 
 .news-item .news-item__title, .news-item .news-item__image, .news-item .news-item__content, .news-item .news-item__date { text-align: center; }
 
-.news-item .news-item__image { width: 100%; height: 200px; background-position: center; background-repeat: no-repeat; }
+.news-item .news-item__image { width: 100%; background-position: center; background-repeat: no-repeat; }
 
 .news-item .news-item__featured { position: absolute; top: 0; left: 0; width: 100px; }
 

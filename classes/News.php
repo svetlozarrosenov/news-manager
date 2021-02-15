@@ -11,21 +11,27 @@ class News {
         } );
 	}
 
+	/**
+     * Get single template for the news post type from the plugin directory.
+     */
 	public function load_news_single_template() {
 		add_filter('template_include', function ( $template ) {
 		    $post_types = array('crb_news');
 
 		    if (is_singular($post_types)) {
-		        $template = Loader::render('single-news', [], 'templates');
+		        $template = Loader::render('news-single', [], 'templates');
 		    }
 
 		    return $template;
 		} );
 	}
 
+	/**
+     * Create news listing shortcode
+     */
 	public function create_shortcode() {
 		add_shortcode( 'news', function( $atts, $content ) {
-			$posts_per_page = ( ! empty( $atts['posts_per_page'] ) && is_numeric( $atts['posts_per_page'] ) ) ? $atts['posts_per_page'] : 10;
+			$posts_per_page = ( ! empty( $atts['posts_per_page'] ) && is_numeric( $atts['posts_per_page'] ) ) ? $atts['posts_per_page'] : 3;
 
 			$sort_options = [ 'asc', 'desc' ];
 
@@ -44,8 +50,17 @@ class News {
 		} );
 	}
 
-	public function excerpt_length( $length ) {
-		add_filter( 'excerpt_length', function() use ( $length ) {
+	/**
+	 * Change the excerpt length.
+	 * @param  integer $news_length number of words to return.
+	 */
+	public function excerpt_length( $news_length ) {
+		add_filter( 'excerpt_length', function( $length ) use ( $news_length ) {
+			global $post;
+    		if ( $post->post_type == 'crb_news' ) {
+    			$length = $news_length;	
+    		}
+
 			return $length;
 		}, 999 );
 	}

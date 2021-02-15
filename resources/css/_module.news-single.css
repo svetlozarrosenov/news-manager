@@ -1,0 +1,9 @@
+/* ------------------------------------------------------------ *\
+	 news-single
+\* ------------------------------------------------------------ */
+
+.news-single-container .news-single__image img { text-align: center; margin: 0 auto; }
+
+.news-single-container .news-single__title, .news-single-container .news-single__content, .news-single-container .news-single__date { text-align: center; }
+
+.news-single-container .news-single__image, .news-single-container .news-single__title, .news-single-container .news-single__content { padding-bottom: 30px; margin-bottom: 0; }

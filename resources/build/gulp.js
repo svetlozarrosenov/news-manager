@@ -2,6 +2,8 @@
  * The module dependencies.
  */
 const del = require('del');
+const uglify = require('gulp-uglify');
+var uglifyCss = require('gulp-uglifycss');
 const gulp = require('gulp');
 const utils = require('./utils');
 const gulpif = require('gulp-if');
@@ -61,6 +63,7 @@ const styles = () => {
 				path.basename = 'bundle';
 			}
 		}))
+		.pipe(uglifyCss())
 		.pipe(gulpif(isDev, sourcemaps.write('./')))
 		.pipe(gulp.dest(dest));
 };
@@ -77,6 +80,7 @@ const scripts = () => {
 		.src(src)
 		.pipe(plumber({ errorHandler: error }))
 		.pipe(webpack(config, bundler))
+		.pipe(uglify())
 		.pipe(gulp.dest(dest));
 };
 

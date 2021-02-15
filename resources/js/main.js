@@ -1,17 +1,27 @@
 $('.news__actions').on('click', '.paging__next', function(e){
 	e.preventDefault();
 
-	let nextPage = $(this).attr('href');
+	let $nextPage = $(this).attr('href');
+	let $spinner = $(".spinner");
 
-	$.get(nextPage, function(response){
-		let oldPageNews = $('.news .news-container');
-		let nextPageNews = $(response).find('.news-container .news-item');
+	$.ajax({
+		type: "GET",
+		url: $nextPage,
+		beforeSend: function(msg){
+			$spinner.show();
+		},
+		success: function(response){
+			let $oldPageNews = $('.news .news-container');
+			let nextPageNews = $(response).find('.news-container .news-item');
 
-		let oldPagePagging = $('.news .news__actions');
-		let nextPagePagging = $(response).find('.paging');
-		
-		oldPageNews.append(nextPageNews);
+			let $oldPagePagging = $('.news .news__actions');
+			let $nextPagePagging = $(response).find('.paging');
+			
+			$oldPageNews.append(nextPageNews);
 
-		oldPagePagging.html(nextPagePagging);
-	});
+			$oldPagePagging.html($nextPagePagging);
+
+			$spinner.hide();
+		}
+    });	
 });
